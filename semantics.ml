@@ -16,8 +16,8 @@ let rec pow b e = match e with
 
 (* solve_b: bexp -> state -> bool *) 
 let rec solve_b e s = match e with
-                      | True -> true
-                      | False -> false
+                      | True -> "tt"
+                      | False -> "ff"
                       | Aeq (e1, e2) -> (solve_a e1 s) = (solve_a e2 s) 
                       | Beq (e1, e2) -> (solve_b e1 s) = (solve_b e2 s)
                       | Gte (e1, e2) -> solve_a e1 s >= solve_a e2 s
