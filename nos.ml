@@ -12,7 +12,10 @@ let rec nos (statment, s) = match statment with
                                                       else nos (stm2, s)
                             | While (b, stm) -> if ((solve_b b s) = "tt")
                                                   then nos (While (b, stm), nos (stm, s))
-                                                  else s;;
+                                                  else s
+                            | Repeat (stm, b) -> if ((solve_b b s) = "tt")
+                                                  then nos (stm, s)
+                                                  else nos (Repeat (stm, b), nos (stm, s));;
 
 (* tests *) 
 
@@ -46,4 +49,8 @@ print_endline "";;
 
 print_string "c = ";;
 print_int (let new_state = nos (Ast.test5, Semantics.s0) in new_state "c");;
+print_endline "";;
+
+print_string "x = ";;
+print_int (let new_state = nos (Ast.test6, Semantics.s0) in new_state "x");;
 print_endline "";;

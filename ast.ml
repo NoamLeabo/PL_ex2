@@ -20,7 +20,8 @@ type stm = Ass of var * aexp
  | Skip 
  | Comp of stm * stm 
  | If of bexp * stm * stm 
- | While of bexp * stm;;
+ | While of bexp * stm
+ | Repeat of stm * bexp;;
 
 type state = var -> int ;;
 
@@ -44,4 +45,11 @@ let test5 = Comp(
 				          )
 			          )
 		          )
-	          );;
+	          )
+let test6 = Comp(
+              Ass ("x", Num 1), 
+              Repeat(
+                    Ass ("x", Shl(Var "x", Num 2)), 
+                    Gte (Var "x" , Num 10)
+                    )
+              );;
