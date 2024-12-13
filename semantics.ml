@@ -31,7 +31,7 @@ let rec solve_b e s = match e with
                       | Neg e1 -> if ((solve_b e1 s) = "tt")
                                           then "ff"
                                           else "tt" 
-                      | And (e1, e2) -> if (((solve_b e1 s) = "tt") && ((solve_b e1 s) = "tt")) 
+                      | And (e1, e2) -> if (((solve_b e1 s) = "tt") && ((solve_b e2 s) = "tt")) 
                                           then "tt"
                                           else "ff";;
 
@@ -40,8 +40,8 @@ let rec solve_b e s = match e with
 let update x e s = fun y -> if y=x then solve_a e s else s y;; 
 
 exception NotFound of string 
-let default_state x = (* 0, default value? *) 
-raise (NotFound "undefined variable");; 
+let default_state x = (* 0, default value? *)
+raise (NotFound ("undefined variable: " ^ x));; 
 
 (* example of an initial state *) 
 let s0 = update "x" (Num 1) default_state;; 
