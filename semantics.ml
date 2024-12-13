@@ -6,7 +6,13 @@ let rec solve_a e s = match e with
                       | Var v -> s v
                       | Add (e1, e2) -> solve_a e1 s + solve_a e2 s
                       | Mult (e1, e2) -> solve_a e1 s * solve_a e2 s
-                      | Sub (e1, e2) -> solve_a e1 s - solve_a e2 s;;
+                      | Sub (e1, e2) -> solve_a e1 s - solve_a e2 s
+                      | Shl (e1, e2) -> solve_a e1 s * (pow (solve_a e2 s) 2);;
+
+let rec pow b e = match e with
+                  | 0 -> 1
+                  | 1 -> b  
+                  | num -> b * (pow b (num-1));;
 
 (* solve_b: bexp -> state -> bool *) 
 let rec solve_b e s = match e with

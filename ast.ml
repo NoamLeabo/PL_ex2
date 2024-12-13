@@ -4,7 +4,9 @@ type aexp = Num of int
  | Var of var 
  | Add of aexp * aexp 
  | Mult of aexp * aexp 
- | Sub of aexp * aexp;;
+ | Sub of aexp * aexp
+ | Shr of aexp * aexp
+ | Shl of aexp * aexp;;
 
 type bexp = True 
  | False 
