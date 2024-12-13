@@ -7,7 +7,7 @@ let rec nos (statment, s) = match statment with
                             | Ass (v, a) -> update v a s
                             | Skip -> s
                             | Comp (stm1, stm2) -> nos (stm2, nos (stm1, s))
-                            | If (b, stm1, stm2) -> (if (solve_b b s) = "tt")
+                            | If (b, stm1, stm2) -> if ((solve_b b s) = "tt")
                                                       then nos (stm1, s)
                                                       else nos (stm2, s)
                             | While (b, stm) -> if ((solve_b b s) = "tt")
