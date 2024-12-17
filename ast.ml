@@ -53,3 +53,22 @@ let test6 = Comp(
                     Gte (Var "x" , Num 10)
                     )
               );;
+let test7 = Comp
+(Comp (Ass ("x5", Num 5),
+  Comp (Ass ("x4", Num 4),
+   Comp (Ass ("x3", Num 3),
+    Comp (Ass ("x2", Num 2), Comp (Ass ("x1", Num 1), Skip))))),
+If (Gte (Num 1, Num 5), Skip,
+ Comp (Ass ("i", Num 1),
+  While (Neg (Gte (Var "i", Num 5)),
+   Comp (Ass ("j", Add (Var "i", Num 1)),
+    Comp
+     (While (Neg (Gte (Var "j", Num 6)),
+       Comp
+        (If (Gte (Var "x1", Var "x1"),
+          Comp (Ass ("temp", Var "x1"),
+           Comp (Ass ("x1", Var "x1"), Ass ("x1", Var "temp"))),
+          Skip),
+        Ass ("j", Add (Var "j", Num 1)))),
+     Ass ("i", Add (Var "i", Num 1))))))));;
+

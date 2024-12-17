@@ -54,3 +54,23 @@ print_endline "";;
 print_string "x = ";;
 print_int (let new_state = nos (Ast.test6, Semantics.s0) in new_state "x");;
 print_endline "";;
+
+print_string "x1 = ";;
+print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x1");;
+print_endline "";;
+
+print_string "x2 = ";;
+print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x2");;
+print_endline "";;
+
+print_string "x3 = ";;
+print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x3");;
+print_endline "";;
+
+print_string "x4 = ";;
+print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x4");;
+print_endline "";;
+
+print_string "x5 = ";;
+print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x5");;
+print_endline "";;
