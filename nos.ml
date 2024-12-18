@@ -13,9 +13,10 @@ let rec nos (statment, s) = match statment with
                             | While (b, stm) -> if ((solve_b b s) = "tt")
                                                   then nos (While (b, stm), nos (stm, s))
                                                   else s
-                            | Repeat (stm, b) -> if ((solve_b b s) = "tt")
-                                                  then nos (stm, s)
-                                                  else nos (Repeat (stm, b), nos (stm, s));;
+                            | Repeat (stm, b) -> let s_affected = nos (stm,s) in 
+                                                  if ((solve_b b s_affected) = "tt")
+                                                  then s_affected
+                                                  else nos (Repeat (stm, b), s_affected);;
 
 (* tests *) 
 
@@ -53,24 +54,4 @@ print_endline "";;
 
 print_string "x = ";;
 print_int (let new_state = nos (Ast.test6, Semantics.s0) in new_state "x");;
-print_endline "";;
-
-print_string "x1 = ";;
-print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x1");;
-print_endline "";;
-
-print_string "x2 = ";;
-print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x2");;
-print_endline "";;
-
-print_string "x3 = ";;
-print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x3");;
-print_endline "";;
-
-print_string "x4 = ";;
-print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x4");;
-print_endline "";;
-
-print_string "x5 = ";;
-print_int (let new_state = nos (Ast.test7, Semantics.s0) in new_state "x5");;
 print_endline "";;

@@ -10,7 +10,7 @@ let run_bubble_sort n =
   (* Initialize variables x1 = n, x2 = n-1, ..., xn = 1 *)
   let rec init_vars i =
     if i = 0 then Skip
-    else Comp (Ass (var_name i, Num ((19*(n-i+1)) mod (2*n))), init_vars (i - 1))
+    else Comp (Ass (var_name i, Num ((13*(n-i+1)) mod (10*n))), init_vars (i - 1))
   in
 
   (* Swap logic for two variables xi and xj *)
@@ -67,4 +67,4 @@ let run_bubble_sort n =
 ;;
 
 (* Run bubble sort for n elements *)
-let () = ignore (run_bubble_sort 8)
+let () = ignore (run_bubble_sort 10)
