@@ -51,7 +51,3 @@ print_endline "";;
 print_string "c = ";;
 print_int (let new_state = nos (Ast.test5, Semantics.s0) in new_state "c");;
 print_endline "";;
-
-print_string "x = ";;
-print_int (let new_state = nos (Ast.test6, Semantics.s0) in new_state "x");;
-print_endline "";;
