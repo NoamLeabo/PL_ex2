@@ -13,7 +13,11 @@ let rec solve_a e s = match e with
                       | Mult (e1, e2) -> solve_a e1 s * solve_a e2 s
                       | Sub (e1, e2) -> solve_a e1 s - solve_a e2 s
                       | Shl (e1, e2) -> solve_a e1 s * (pow 2 (solve_a e2 s))
-                      | Shr (e1, e2) -> solve_a e1 s / (pow 2 (solve_a e2 s));;
+                      | Shr (e1, e2) ->
+                        let divisor = pow 2 (solve_a e2 s) in
+                        if divisor = 0 then raise (Division_by_zero)
+                        else solve_a e1 s / divisor
+                        ;;
 
 (* solve_b: bexp -> state -> bool *) 
 let rec solve_b e s = match e with
