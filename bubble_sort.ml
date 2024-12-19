@@ -2,19 +2,29 @@ open Ast
 open Nos
 open Semantics
 open Printf
+
+let initial_values = [("x1", 124); ("x2", 94); ("x3", 53); ("x4", 901); ("x5", 49); ("x6", 3); ("x7", 71); ("x8", 13);] 
+let lookup_value var_name = List.assoc var_name initial_values
     
 let run_bubble_sort n =
   (* Generate variable names "x1", "x2", ..., "xn" *)
   let var_name i = "x" ^ string_of_int i in
 
-  (* Initialize variables x1, x2, ..., xn with distinct values based on a formula.
-     The formula (13 * (n - i + 1)) mod (10 * n) ensures unique values for sorting. *)
+  (* 
+     Initialize variables x1, x2, ..., xn with distinct values and there are two options for this.
+     OPTION 1: using the formula (13 * (n - i + 1)) mod (10 * n) which sort of ensures rand/unique values for sorting. 
+     OPTION 2: using the the initial_values that were assigned, PAT-ATTENTION - You must have AT LEAST n assignments otherwise error will occure 
+     You may toggle between the options by making one a comment and removing the other from being a comment     
+  *)
   let rec init_vars i =
     if i = 0 then Skip  (* Base case: no variables to initialize. *)
     else
       Comp (Ass (var_name i, Num ((13 * (n - i + 1)) mod (10 * n))), init_vars (i - 1))
-      (* Assign a value to variable xi and recursively initialize the rest. *)
-  in
+      (* OPTION 1: Assign a value to variable xi and recursively initialize the rest, using the "RAND" formula *)
+
+      (* Comp (Ass (var_name i, Num ((lookup_value (var_name i)))), init_vars (i - 1)) *)
+      (* OPTION 2: Assign a value to variable xi and recursively initialize the rest, using the USRE'S ASSIGNMENTS *)
+in
 
   (* Swap logic for two variables xi and xj:
      - Use a temporary variable "temp" to store the value of xi.
@@ -80,4 +90,4 @@ let run_bubble_sort n =
 ;;
 
 (* Run bubble sort for n elements with n = 10 as an example. *)
-let () = ignore (run_bubble_sort 10)
+let () = ignore (run_bubble_sort 8)
