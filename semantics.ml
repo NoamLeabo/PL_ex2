@@ -1,10 +1,5 @@
 open Ast
 
-let rec pow b e = match e with
-                  | 0 -> 1
-                  | 1 -> b  
-                  | num -> b * (pow b (num-1));;
-
 (* solve_a: aexp -> state -> int *) 
 let rec solve_a e s = match e with
                       | Num n -> n
